@@ -9,6 +9,13 @@ fi
 #Lista på användare.
 for anvandare in "$@"
 do
+
+      #kollar om användare finns i listan
+      if id "$anvandare" &>/dev/null; then
+            echo "Användaren finns redan"
+            continue
+      fi
+      
       #Skapar användare med hemkatalog.
       echo "Skapar användare: $anvandare"
       useradd -m "$anvandare"
@@ -24,7 +31,7 @@ do
       chmod 700 /home/$anvandare/Work
 
       #Skapa välkomstmeddelande med lista på användare
-      echo "Välkomen $anvandare" > /home/$anvandare/welcome.txt
+      echo "Välkommen $anvandare" > /home/$anvandare/welcome.txt
       echo "Andra användare: " >> /home/$anvandare/welcome.txt
       echo "$@" >> /home/$anvandare/welcome.txt
       
