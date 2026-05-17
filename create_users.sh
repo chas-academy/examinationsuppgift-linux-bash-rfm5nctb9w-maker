@@ -3,6 +3,7 @@
 #Kontrollerar ifall man är root.
 if [ "$EUID" -ne 0 ]; then
       echo "Du måste vara root för att kunna köra scriptet"
+      exit 1
 fi
 
 #Lista på användare.
