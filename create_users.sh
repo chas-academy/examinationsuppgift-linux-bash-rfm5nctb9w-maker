@@ -25,9 +25,9 @@ do
       mkdir /home/$anvandare/Work
 
       #ägare får alla rättigheter till mapparna.
-      chmod 700 /home/$anvandare/Documents
-      chmod 700 /home/$anvandare/Downloads
-      chmod 700 /home/$anvandare/Work
+      chmod 600 /home/$anvandare/Documents
+      chmod 600 /home/$anvandare/Downloads
+      chmod 600 /home/$anvandare/Work
 
       #Ändrar så att användaren äger mapparna
       chown $anvandare:$anvandare /home/$anvandare/Documents
