@@ -9,6 +9,12 @@ fi
 #Lista på användare.
 for anvandare in "$@"
 do
+      #kollar om användare finns i listan
+      if id "$anvandare" &>/dev/null; then
+            echo "Användaren finns redan"
+            continue
+      fi
+      
       #Skapar användare med hemkatalog.
       echo "Skapar användare: $anvandare"
       useradd -m "$anvandare"
