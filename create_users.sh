@@ -26,6 +26,7 @@ do
       echo "Välkomen $anvandare" > /home/$anvandare/welcome.txt
       echo "Andra användare: " >> /home/$anvandare/welcome.txt
       echo "$@" >> /home/$anvandare/welcome.txt
+      
 done
 
 echo "Användaren är färdig"
