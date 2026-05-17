@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 #Kontrollerar ifall man är root.
 if [ "$EUID" -ne 0 ]; then
