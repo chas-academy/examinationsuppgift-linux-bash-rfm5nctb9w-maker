@@ -29,10 +29,18 @@ do
       chmod 700 /home/$anvandare/Downloads
       chmod 700 /home/$anvandare/Work
 
+      #Ändrar så att användaren äger mapparna
+      chown $anvandare:$anvandare /home/$anvandare/Documents
+      chown $anvandare:$anvandare /home/$anvandare/Downloads
+      chown $anvandare:$anvandare /home/$anvandare/Work
+
       #Skapa välkomstmeddelande med lista på användare
       echo "Välkommen $anvandare" > /home/$anvandare/welcome.txt
       echo "Andra användare: " >> /home/$anvandare/welcome.txt
       echo "$@" >> /home/$anvandare/welcome.txt
+
+      #ändrar så att användaren äger welcome.txt
+      chown $anvandare:$anvandare /home/$anvandare/welcome.txt
       
 done
 
