@@ -41,7 +41,7 @@ do
 
       #ändrar så att användaren äger welcome.txt
       chown $anvandare:$anvandare /home/$anvandare/welcome.txt
-      
-done
 
 echo "Användaren är färdig"
+
+done
