@@ -19,6 +19,8 @@ do
       echo "Skapar användare: $anvandare"
       useradd -m "$anvandare"
 
+      chown -R $anvandare:$anvandare /home/$anvandare
+
       #Skapa mappar med Documents, Downloads och Work.
       mkdir /home/$anvandare/Documents
       mkdir /home/$anvandare/Downloads
