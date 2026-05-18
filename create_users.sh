@@ -17,7 +17,7 @@ do
       
       #Skapar användare med hemkatalog.
       echo "Skapar användare: $anvandare"
-      useradd -m "$anvandare"
+      useradd -m -s /bin/bash "$anvandare"
 
       #Skapa mappar med Documents, Downloads och Work.
       mkdir /home/$anvandare/Documents
