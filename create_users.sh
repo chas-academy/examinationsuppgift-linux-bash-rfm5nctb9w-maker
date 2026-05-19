@@ -6,6 +6,12 @@ if [ "$EUID" -ne 0 ]; then
       exit 1
 fi
 
+#kollar ifall ett namn skickas in
+if [ -z "$1" ]; then
+      echo "Du har glömt lägga till ett namn."
+      exit 1
+fi
+
 #Lista på användare.
 for anvandare in "$@"
 do
