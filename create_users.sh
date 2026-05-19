@@ -44,7 +44,7 @@ for anvandare in "$@"; do
       #Skapa välkomstmeddelande med lista på användare
       echo "Välkommen $anvandare" > /home/$anvandare/welcome.txt
       echo "Andra användare: " >> /home/$anvandare/welcome.txt
-      echo "$A_anvandare" >> /home/$anvandare/welcome.txt
+      echo "$@" >> /home/$anvandare/welcome.txt
       
       #ändrar så att användaren äger welcome.txt
       chown $anvandare:$anvandare /home/$anvandare/welcome.txt
