@@ -13,7 +13,7 @@ if [ -z "$1" ]; then
 fi
 
 #Lista på användare.
-for anvandare in "$@" do
+for anvandare in "$@"; do
       
       #kollar om användare finns i listan
       if id "$anvandare" &>/dev/null; then
