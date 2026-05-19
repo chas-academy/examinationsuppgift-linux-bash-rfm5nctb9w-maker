@@ -23,6 +23,31 @@ for anvandare in "$@"; do
 
       #Skapar användare med hemkatalog.
       useradd -m -s /bin/bash "$anvandare"
+      
+  #Skapa mappar med Documents, Downloads och Work.
+      mkdir -p /home/$anvandare/Documents
+      mkdir -p /home/$anvandare/Downloads
+      mkdir -p /home/$anvandare/Work
 
-      $anvandare:$temp | chpasswd
+      #ägare får alla rättigheter till mapparna.
+      chmod 700 /home/$anvandare/Documents
+      chmod 700 /home/$anvandare/Downloads
+      chmod 700 /home/$anvandare/Work
+
+      #Ändrar så att användaren äger mapparna
+      chown $anvandare:$anvandare /home/$anvandare/Documents
+      chown $anvandare:$anvandare /home/$anvandare/Downloads
+      chown $anvandare:$anvandare /home/$anvandare/Work
+
+      #Skapa välkomstmeddelande med lista på användare
+      echo "Välkommen $anvandare" > /home/$anvandare/welcome.txt
+      echo "Andra användare: " >> /home/$anvandare/welcome.txt
+      echo "$A_anvandare" >> /home/$anvandare/welcome.txt
+      
+      #ändrar så att användaren äger welcome.txt
+      chown $anvandare:$anvandare /home/$anvandare/welcome.txt
+
+
+      echo "Användaren är färdig"
+
 done
