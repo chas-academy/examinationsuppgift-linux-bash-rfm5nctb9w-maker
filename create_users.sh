@@ -12,12 +12,14 @@ if [ -z "$1" ]; then
       exit 1
 fi
 
-temp="12345678"
-
 #Lista på användare.
 for anvandare in "$@"; do
       
       #kollar om användare finns i listan
+      if id "$anvandare" &>/dev/null; then
+            echo "Användaren finns redan"
+            continue
+      fi
       
       echo "Skapar användare: $anvandare"
 
