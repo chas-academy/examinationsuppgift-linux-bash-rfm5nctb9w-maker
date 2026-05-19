@@ -12,6 +12,9 @@ if [ -z "$1" ]; then
       exit 1
 fi
 
+#lista på alla användare som skickas in
+A_anvandare="$@"
+
 #Lista på användare.
 for anvandare in "$@"
 do
@@ -21,8 +24,9 @@ do
             continue
       fi
       
-      #Skapar användare med hemkatalog.
       echo "Skapar användare: $anvandare"
+
+      #Skapar användare med hemkatalog.
       useradd -m -s /bin/bash "$anvandare"
 
       #Skapa mappar med Documents, Downloads och Work.
@@ -43,12 +47,12 @@ do
       #Skapa välkomstmeddelande med lista på användare
       echo "Välkommen $anvandare" > /home/$anvandare/welcome.txt
       echo "Andra användare: " >> /home/$anvandare/welcome.txt
-      echo "$@" >> /home/$anvandare/welcome.txt
-
+      echo "$A_anvandare" >> /home/$anvandare/welcome.txt
+      
       #ändrar så att användaren äger welcome.txt
       chown $anvandare:$anvandare /home/$anvandare/welcome.txt
 
 
-echo "Användaren är färdig"
+      echo "Användaren är färdig"
 
 done
