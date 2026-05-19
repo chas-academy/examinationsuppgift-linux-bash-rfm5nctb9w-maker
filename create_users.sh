@@ -16,8 +16,8 @@ fi
 A_anvandare="$@"
 
 #Lista på användare.
-for anvandare in "$@"
-do
+for anvandare in "$@" do
+      
       #kollar om användare finns i listan
       if id "$anvandare" &>/dev/null; then
             echo "Användaren finns redan"
@@ -30,9 +30,9 @@ do
       useradd -m -s /bin/bash "$anvandare"
 
       #Skapa mappar med Documents, Downloads och Work.
-      mkdir /home/$anvandare/Documents
-      mkdir /home/$anvandare/Downloads
-      mkdir /home/$anvandare/Work
+      mkdir -p /home/$anvandare/Documents
+      mkdir -p /home/$anvandare/Downloads
+      mkdir -p /home/$anvandare/Work
 
       #ägare får alla rättigheter till mapparna.
       chmod 700 /home/$anvandare/Documents
