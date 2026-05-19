@@ -12,6 +12,8 @@ if [ -z "$1" ]; then
       exit 1
 fi
 
+temp="12345678"
+
 #Lista på användare.
 for anvandare in "$@"; do
       
@@ -22,4 +24,5 @@ for anvandare in "$@"; do
       #Skapar användare med hemkatalog.
       useradd -m -s /bin/bash "$anvandare"
 
+      $anvandare:$temp | chpasswd
 done
