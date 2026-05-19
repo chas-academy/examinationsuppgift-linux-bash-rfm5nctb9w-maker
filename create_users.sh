@@ -6,26 +6,30 @@ if [ "$EUID" -ne 0 ]; then
       exit 1
 fi
 
-#lista på alla användare som skickas in
-A_anvandare=("$@")
+#kollar ifall ett namn skickas in
+if [ -z "$1" ]; then
+      echo "Du har glömt lägga till ett namn."
+      exit 1
+fi
 
 #Lista på användare.
 for anvandare in "$@"; do
-      
+
       #kollar om användare finns i listan
       if id "$anvandare" &>/dev/null; then
             echo "Användaren finns redan"
             continue
       fi
 
-      #Skapar användare med hemkatalog.
       echo "Skapar användare: $anvandare"
+
+      #Skapar användare med hemkatalog.
       useradd -m -s /bin/bash "$anvandare"
-      
+
   #Skapa mappar med Documents, Downloads och Work.
-      mkdir /home/$anvandare/Documents
-      mkdir /home/$anvandare/Downloads
-      mkdir /home/$anvandare/Work
+      mkdir -p /home/$anvandare/Documents
+      mkdir -p /home/$anvandare/Downloads
+      mkdir -p /home/$anvandare/Work
 
       #ägare får alla rättigheter till mapparna.
       chmod 700 /home/$anvandare/Documents
@@ -40,20 +44,12 @@ for anvandare in "$@"; do
       #Skapa välkomstmeddelande med lista på användare
       echo "Välkommen $anvandare" > /home/$anvandare/welcome.txt
       echo "Andra användare: " >> /home/$anvandare/welcome.txt
-      for user in "${A_anvandare[@]}"; do
-            echo "$user" >> /home/$anvandare/welcome.txt
-      done
-      
+      echo "$@" >> /home/$anvandare/welcome.txt
+
       #ändrar så att användaren äger welcome.txt
       chown $anvandare:$anvandare /home/$anvandare/welcome.txt
 
-      mkdir /home/$anvandare/.ssh
-      chmod 700 /home/$anvandare/.ssh
-      cat /home/chas/.ssh/id_ed25519.pub > /home/$anvandare/.ssh/authorized_keys
-      chmod 600 /home/$anvandare/.ssh/authorized_keys
-      chown -R $anvandare:$anvandare /home/$anvandare/.ssh
 
-done
+      echo "Användaren är färdig"
 
-echo "Användarna är färdiga"
 
